@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>色彩製造機</title>
+</head>
+
+<body>
+    <div id="targetarea" style="width: 200px; height: 200px;display:flex;justify-content:center;align-items: center;">
+        <span id="colornumber" style="color:black"></span></div>
+    <hr>
+    <ul>
+        <li> <input type="button" id="red" value="R" onclick="red()"></li>
+        <li> <input type="button" id="green" value="G" onclick="green()"></li>
+        <li> <input type="button" id="blue" value="B" onclick="blue()"></li>
+    </ul>
+
+
+
+
+    <script>
+        // 先設定目標區域的ID抓取
+        let thetarget = document.getElementById('targetarea');
+
+        // 設定0~255隨機數字的生成
+        function GetRandom(min, max) {
+            return Math.floor(Math.random() * max + 1) + min;
+        }
+
+        // 設定RGB三原色的隨機數字
+        let RandomRed = GetRandom(0, 255);
+        let RandomGreen = GetRandom(0, 255);
+        let RandomBlue = GetRandom(0, 255);
+        let antiRed = 255 - RandomRed;
+        let antiGreen = 255 - RandomGreen;
+        let antiBlue = 255 - RandomBlue;
+
+        // 主要區域的顯示顏色
+        thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+        document.getElementById("colornumber").textContent = `RGB = (${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+        document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+
+
+        function red() {
+            RandomRed = prompt('請輸入 0-255 紅色的號碼', `${RandomRed}`);
+            thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `#(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+        }
+
+        function green() {
+            RandomGreen = prompt('請輸入 0-255 綠色的號碼', `${RandomGreen}`);
+            thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `#(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+        }
+
+        function blue() {
+            RandomBlue = prompt('請輸入 0-255 藍色的號碼', `${RandomBlue}`);
+            thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `#(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+        }
+
+
+
+
+        // document.getElementById('red')
+        // document.getElementById('green')
+        // document.getElementById('blue')
+    </script>
+</body>
+
+</html>
