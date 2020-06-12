@@ -16,15 +16,17 @@
     <div id="targetarea" style="width: 200px; height: 200px;display:flex;justify-content:center;align-items: center;">
         <span id="colornumber" style="color:black"></span></div>
     <hr>
-    <ul>
-        <li><input type="button" value="隨機出色" onclick="makeitrandom()"></li>
-        <li> <input type="button" id="red" value="R" onclick="red()"> <input id="rangeRed" type="range" min="0"
-                max="255"></li>
-        <li> <input type="button" id="green" value="G" onclick="green()"> <input id="rangeGreen" type="range" min="0"
-                max="255"></li>
-        <li> <input type="button" id="blue" value="B" onclick="blue()"> <input id="rangeBlue" type="range" min="0"
-                max="255"></li>
-    </ul>
+
+    <input type="button" value="隨機出色" onclick="makeitrandom()"><br>
+    <input type="button" id="red" value="R" onclick="red()">
+    <input id="rangeRed" type="range" min="0" max="255"><br>
+    <input type="button" id="green" value="G" onclick="green()">
+    <input id="rangeGreen" type="range" min="0" max="255"><br>
+    <input type="button" id="blue" value="B" onclick="blue()">
+    <input id="rangeBlue" type="range" min="0" max="255"><br>
+    <input type="button" value="+" onmousedown="timer=setInterval(alladd, 30);" onmouseup="clearInterval(timer)">
+    <input type="button" value="-" onmousedown="timer=setInterval(allminus, 30);" onmouseup="clearInterval(timer)">
+
 
 
 
@@ -54,7 +56,7 @@
 
         // 主要區域的顯示顏色
         thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-        document.getElementById("colornumber").textContent = `RGB = (${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+        document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
         document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
 
         function makeitrandom() {
@@ -65,7 +67,7 @@
             antiGreen = 255 - RandomGreen;
             antiBlue = 255 - RandomBlue;
             thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-            document.getElementById("colornumber").textContent = `RGB = (${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
             document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
             rangeRed.value = RandomRed;
             rangeGreen.value = RandomGreen
@@ -79,7 +81,7 @@
                 red();
             } else {
                 thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-                document.getElementById("colornumber").textContent = `#(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+                document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
                 document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
                 rangeRed.value = RandomRed;
             }
@@ -92,7 +94,7 @@
             } else {
 
                 thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-                document.getElementById("colornumber").textContent = `#(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+                document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
                 document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
                 rangeGreen.value = RandomGreen
             }
@@ -105,7 +107,7 @@
             } else {
 
                 thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-                document.getElementById("colornumber").textContent = `#(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+                document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
                 document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
                 rangeBlue.value = RandomBlue;
             }
@@ -115,15 +117,54 @@
             RandomGreen = rangeGreen.value;
             RandomBlue = rangeBlue.value;
             thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-            document.getElementById("colornumber").textContent = `#(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
             document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
         }
         document.getElementById('rangeRed').addEventListener('input', colorchange);
         document.getElementById('rangeGreen').addEventListener('input', colorchange);
         document.getElementById('rangeBlue').addEventListener('input', colorchange);
 
+        function alladd() {
+            RandomRed += 1;
+            RandomGreen += 1;
+            RandomBlue += 1;
+            if (RandomRed >= 255) {
+                RandomRed = 255;
+            }
+            if (RandomGreen >= 255) {
+                RandomGreen = 255;
+            }
+            if (RandomBlue >= 255) {
+                RandomBlue = 255;
+            }
+            thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+            rangeRed.value = RandomRed
+            rangeGreen.value = RandomGreen
+            rangeBlue.value = RandomBlue
+        }
 
-
+        function allminus() {
+            RandomRed -= 1;
+            RandomGreen -= 1;
+            RandomBlue -= 1;
+            if (RandomRed <= 0) {
+                RandomRed = 0;
+            }
+            if (RandomGreen <= 0) {
+                RandomGreen = 0;
+            }
+            if (RandomBlue <= 0) {
+                RandomBlue = 0;
+            }
+            thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+            rangeRed.value = RandomRed
+            rangeGreen.value = RandomGreen
+            rangeBlue.value = RandomBlue
+        }
 
     </script>
 </body>
