@@ -5,6 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>色彩製造機</title>
+    <style>
+        * {
+            margin: 5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -12,9 +17,13 @@
         <span id="colornumber" style="color:black"></span></div>
     <hr>
     <ul>
-        <li> <input type="button" id="red" value="R" onclick="red()"></li>
-        <li> <input type="button" id="green" value="G" onclick="green()"></li>
-        <li> <input type="button" id="blue" value="B" onclick="blue()"></li>
+        <li><input type="button" value="隨機出色" onclick="makeitrandom()"></li>
+        <li> <input type="button" id="red" value="R" onclick="red()"> <input id="rangeRed" type="range" min="0"
+                max="255"></li>
+        <li> <input type="button" id="green" value="G" onclick="green()"> <input id="rangeGreen" type="range" min="0"
+                max="255"></li>
+        <li> <input type="button" id="blue" value="B" onclick="blue()"> <input id="rangeBlue" type="range" min="0"
+                max="255"></li>
     </ul>
 
 
@@ -36,40 +45,86 @@
         let antiRed = 255 - RandomRed;
         let antiGreen = 255 - RandomGreen;
         let antiBlue = 255 - RandomBlue;
+        let rangeRed = document.getElementById("rangeRed");
+        let rangeGreen = document.getElementById("rangeGreen");
+        let rangeBlue = document.getElementById("rangeBlue");
+        rangeRed.value = RandomRed;
+        rangeGreen.value = RandomGreen
+        rangeBlue.value = RandomBlue;
 
         // 主要區域的顯示顏色
         thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
         document.getElementById("colornumber").textContent = `RGB = (${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
         document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
 
+        function makeitrandom() {
+            RandomRed = GetRandom(0, 255);
+            RandomGreen = GetRandom(0, 255);
+            RandomBlue = GetRandom(0, 255);
+            antiRed = 255 - RandomRed;
+            antiGreen = 255 - RandomGreen;
+            antiBlue = 255 - RandomBlue;
+            thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `RGB = (${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+            rangeRed.value = RandomRed;
+            rangeGreen.value = RandomGreen
+            rangeBlue.value = RandomBlue;
+        }
+
 
         function red() {
             RandomRed = prompt('請輸入 0-255 紅色的號碼', `${RandomRed}`);
-            thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-            document.getElementById("colornumber").textContent = `#(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-            document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+            if (RandomRed == null || RandomRed < 0 || RandomRed > 255) {
+                red();
+            } else {
+                thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+                document.getElementById("colornumber").textContent = `#(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+                document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+                rangeRed.value = RandomRed;
+            }
         }
 
         function green() {
-            RandomGreen = prompt('請輸入 0-255 綠色的號碼', `${RandomGreen}`);
-            thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-            document.getElementById("colornumber").textContent = `#(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-            document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+            RandomGreen = prompt('請輸入 0-255 紅色的號碼', `${RandomGreen}`);
+            if (RandomGreen == null || RandomGreen < 0 || RandomGreen > 255) {
+                green();
+            } else {
+
+                thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+                document.getElementById("colornumber").textContent = `#(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+                document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+                rangeGreen.value = RandomGreen
+            }
         }
 
         function blue() {
-            RandomBlue = prompt('請輸入 0-255 藍色的號碼', `${RandomBlue}`);
+            RandomBlue = prompt('請輸入 0-255 紅色的號碼', `${RandomBlue}`);
+            if (RandomBlue == null || RandomBlue < 0 || RandomBlue > 255) {
+                blue();
+            } else {
+
+                thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+                document.getElementById("colornumber").textContent = `#(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+                document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+                rangeBlue.value = RandomBlue;
+            }
+        }
+        function colorchange() {
+            RandomRed = rangeRed.value;
+            RandomGreen = rangeGreen.value;
+            RandomBlue = rangeBlue.value;
             thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
             document.getElementById("colornumber").textContent = `#(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
             document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
         }
+        document.getElementById('rangeRed').addEventListener('input', colorchange);
+        document.getElementById('rangeGreen').addEventListener('input', colorchange);
+        document.getElementById('rangeBlue').addEventListener('input', colorchange);
 
 
 
 
-        // document.getElementById('red')
-        // document.getElementById('green')
-        // document.getElementById('blue')
     </script>
 </body>
 
