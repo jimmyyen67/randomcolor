@@ -17,15 +17,23 @@
         <span id="colornumber" style="color:black"></span></div>
     <hr>
 
-    <input type="button" value="隨機出色" onclick="makeitrandom()"><br>
-    <input type="button" id="red" value="R" onclick="red()">
+    <input type="button" style="padding:10px 20px" value="隨機出色" onclick="makeitrandom()"><br>
+    <input type="button" style="padding:5px 15px;" id="red" value="R" onclick="red()">
     <input id="rangeRed" type="range" min="0" max="255"><br>
-    <input type="button" id="green" value="G" onclick="green()">
+    <input type="button" style="padding:5px 15px;" id="green" value="G" onclick="green()">
     <input id="rangeGreen" type="range" min="0" max="255"><br>
-    <input type="button" id="blue" value="B" onclick="blue()">
+    <input type="button" style="padding:5px 15px;" id="blue" value="B" onclick="blue()">
     <input id="rangeBlue" type="range" min="0" max="255"><br>
-    <input type="button" value="+" onmousedown="timer=setInterval(alladd, 30);" onmouseup="clearInterval(timer)">
-    <input type="button" value="-" onmousedown="timer=setInterval(allminus, 30);" onmouseup="clearInterval(timer)">
+    <input type="button" value="+" style="padding:5px 15px;" onmousedown="timer=setInterval(alladd, 10);"
+        onmouseup="clearInterval(timer)" onmouseout="clearInterval(timer)">
+    <input type="button" value="-" style="padding:5px 15px;" onmousedown="timer=setInterval(allminus, 10);"
+        onmouseup="clearInterval(timer)" onmouseout="clearInterval(timer)">
+    <input type="button" value="?" style="padding:5px 15px;" onmousedown="timer=setInterval(makeitrandom, 10);"
+        onmouseup="clearInterval(timer)" onmouseout="clearInterval(timer)"><br>
+    <div style="padding:10px 20px">
+        <input type="text" value="" id="thergb">
+        <button onclick="copyit()">複製</button>
+    </div>
 
 
 
@@ -50,13 +58,16 @@
         let rangeRed = document.getElementById("rangeRed");
         let rangeGreen = document.getElementById("rangeGreen");
         let rangeBlue = document.getElementById("rangeBlue");
+        var hexRed = RandomRed.toString(16).toUpperCase();
+        var hexGreen = RandomGreen.toString(16).toUpperCase();
+        var hexBlue = RandomBlue.toString(16).toUpperCase();
         rangeRed.value = RandomRed;
         rangeGreen.value = RandomGreen
         rangeBlue.value = RandomBlue;
 
         // 主要區域的顯示顏色
         thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-        document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+        document.getElementById("colornumber").textContent = `#${hexRed}${hexGreen}${hexBlue}`;
         document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
 
         function makeitrandom() {
@@ -66,8 +77,11 @@
             antiRed = 255 - RandomRed;
             antiGreen = 255 - RandomGreen;
             antiBlue = 255 - RandomBlue;
+            hexRed = RandomRed.toString(16).toUpperCase();
+            hexGreen = RandomGreen.toString(16).toUpperCase();
+            hexBlue = RandomBlue.toString(16).toUpperCase();
             thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-            document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `#${hexRed}${hexGreen}${hexBlue}`;
             document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
             rangeRed.value = RandomRed;
             rangeGreen.value = RandomGreen
@@ -80,8 +94,10 @@
             if (RandomRed == null || RandomRed < 0 || RandomRed > 255) {
                 red();
             } else {
+                parsedRed = parseInt(RandomRed, 10);
+                hexRed = parsedRed.toString(16).toUpperCase();
                 thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-                document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+                document.getElementById("colornumber").textContent = `#${hexRed}${hexGreen}${hexBlue}`;
                 document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
                 rangeRed.value = RandomRed;
             }
@@ -92,9 +108,10 @@
             if (RandomGreen == null || RandomGreen < 0 || RandomGreen > 255) {
                 green();
             } else {
-
+                parsedGreen = parseInt(RandomGreen, 10);
+                hexGreen = parsedGreen.toString(16).toUpperCase();
                 thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-                document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+                document.getElementById("colornumber").textContent = `#${hexRed}${hexGreen}${hexBlue}`;
                 document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
                 rangeGreen.value = RandomGreen
             }
@@ -105,9 +122,10 @@
             if (RandomBlue == null || RandomBlue < 0 || RandomBlue > 255) {
                 blue();
             } else {
-
+                parsedBlue = parseInt(RandomBlue, 10);
+                hexBlue = parsedBlue.toString(16).toUpperCase();
                 thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-                document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+                document.getElementById("colornumber").textContent = `#${hexRed}${hexGreen}${hexBlue}`;
                 document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
                 rangeBlue.value = RandomBlue;
             }
@@ -116,13 +134,20 @@
             RandomRed = rangeRed.value;
             RandomGreen = rangeGreen.value;
             RandomBlue = rangeBlue.value;
+            parsedRed = parseInt(RandomRed, 10);
+            parsedGreen = parseInt(RandomGreen, 10);
+            parsedBlue = parseInt(RandomBlue, 10);
+            hexRed = parsedRed.toString(16).toUpperCase();
+            hexGreen = parsedGreen.toString(16).toUpperCase();
+            hexBlue = parsedBlue.toString(16).toUpperCase();
             thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-            document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `#${hexRed}${hexGreen}${hexBlue}`;
             document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
         }
         document.getElementById('rangeRed').addEventListener('input', colorchange);
         document.getElementById('rangeGreen').addEventListener('input', colorchange);
         document.getElementById('rangeBlue').addEventListener('input', colorchange);
+
 
         function alladd() {
             RandomRed += 1;
@@ -137,8 +162,14 @@
             if (RandomBlue >= 255) {
                 RandomBlue = 255;
             }
+            parsedRed = parseInt(RandomRed, 10);
+            parsedGreen = parseInt(RandomGreen, 10);
+            parsedBlue = parseInt(RandomBlue, 10);
+            hexRed = parsedRed.toString(16).toUpperCase();
+            hexGreen = parsedGreen.toString(16).toUpperCase();
+            hexBlue = parsedBlue.toString(16).toUpperCase();
             thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-            document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `#${hexRed}${hexGreen}${hexBlue}`;
             document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
             rangeRed.value = RandomRed
             rangeGreen.value = RandomGreen
@@ -158,14 +189,25 @@
             if (RandomBlue <= 0) {
                 RandomBlue = 0;
             }
+            parsedRed = parseInt(RandomRed, 10);
+            parsedGreen = parseInt(RandomGreen, 10);
+            parsedBlue = parseInt(RandomBlue, 10);
+            hexRed = parsedRed.toString(16).toUpperCase();
+            hexGreen = parsedGreen.toString(16).toUpperCase();
+            hexBlue = parsedBlue.toString(16).toUpperCase();
             thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
-            document.getElementById("colornumber").textContent = `RGB(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `#${hexRed}${hexGreen}${hexBlue}`;
             document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
             rangeRed.value = RandomRed
             rangeGreen.value = RandomGreen
             rangeBlue.value = RandomBlue
         }
-
+        document.querySelector("#thergb").value = `#${hexRed}${hexGreen}${hexBlue}`;
+        function copyit() {
+            var copytarget = document.getElementById("thergb");
+            copytarget.select();
+            document.execCommand("copy");
+        }
     </script>
 </body>
 
