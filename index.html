@@ -13,29 +13,29 @@
 </head>
 
 <body>
-    <div id="targetarea" style="width: 200px; height: 200px;display:flex;justify-content:center;align-items: center;">
+    <div id="targetarea"
+        style="width: 200px; height: 200px;display:flex;justify-content:center;align-items: center;margin:auto">
         <span id="colornumber" style="color:black"></span></div>
     <hr>
-
-    <input type="button" style="padding:10px 20px" value="隨機出色" onclick="makeitrandom()"><br>
-    <input type="button" style="padding:5px 15px;" id="red" value="R" onclick="red()">
-    <input id="rangeRed" type="range" min="0" max="255"><br>
-    <input type="button" style="padding:5px 15px;" id="green" value="G" onclick="green()">
-    <input id="rangeGreen" type="range" min="0" max="255"><br>
-    <input type="button" style="padding:5px 15px;" id="blue" value="B" onclick="blue()">
-    <input id="rangeBlue" type="range" min="0" max="255"><br>
-    <input type="button" value="+" style="padding:5px 15px;" onmousedown="timer=setInterval(alladd, 10);"
-        onmouseup="clearInterval(timer)" onmouseout="clearInterval(timer)">
-    <input type="button" value="-" style="padding:5px 15px;" onmousedown="timer=setInterval(allminus, 10);"
-        onmouseup="clearInterval(timer)" onmouseout="clearInterval(timer)">
-    <input type="button" value="?" style="padding:5px 15px;" onmousedown="timer=setInterval(makeitrandom, 10);"
-        onmouseup="clearInterval(timer)" onmouseout="clearInterval(timer)"><br>
-    <div style="padding:10px 20px">
-        <input type="text" value="" id="thergb">
-        <button onclick="copyit()">複製</button>
+    <div style="width:fit-content;margin:auto">
+        <input type="button" style="padding:10px 20px" value="隨機出色" onclick="makeitrandom()"><br>
+        <input type="button" style="padding:5px 15px;" id="red" value="R" onclick="red()">
+        <input id="rangeRed" type="range" min="0" max="255"><br>
+        <input type="button" style="padding:5px 15px;" id="green" value="G" onclick="green()">
+        <input id="rangeGreen" type="range" min="0" max="255"><br>
+        <input type="button" style="padding:5px 15px;" id="blue" value="B" onclick="blue()">
+        <input id="rangeBlue" type="range" min="0" max="255"><br>
+        <input type="button" value="+" style="padding:5px 15px;" onmousedown="timer=setInterval(alladd, 10);"
+            onmouseup="clearInterval(timer)" onmouseout="clearInterval(timer)">
+        <input type="button" value="-" style="padding:5px 15px;" onmousedown="timer=setInterval(allminus, 10);"
+            onmouseup="clearInterval(timer)" onmouseout="clearInterval(timer)">
+        <input type="button" value="?" style="padding:5px 15px;" onmousedown="timer=setInterval(makeitrandom, 10);"
+            onmouseup="clearInterval(timer)" onmouseout="clearInterval(timer)"><br>
+        <div style="padding:10px 20px">
+            <input type="text" value="" id="thergb">
+            <button onclick="copyit()">複製</button>
+        </div>
     </div>
-
-
 
 
 
