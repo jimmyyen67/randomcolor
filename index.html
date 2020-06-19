@@ -9,38 +9,194 @@
         body {
             height: 100vh;
             display: flex;
+            overflow: hidden;
         }
 
         * {
             margin: 5px;
+            font-family: 'Microsoft Jhenghei';
+            font-weight: bold;
+        }
+
+        #colornumber {
+            font-size: 10rem;
+        }
+
+        #numberRed {
+            width: 3rem;
+            border: red 2px dotted;
+            text-align: center;
+        }
+
+        #numberGreen {
+            width: 3rem;
+            border: green 2px dotted;
+            text-align: center;
+        }
+
+        #numberBlue {
+            width: 3rem;
+            border: blue 2px dotted;
+            text-align: center;
+        }
+
+        #red {
+            background-color: #eb3b5a;
+            color: white;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        #green {
+            background-color: #20bf6b;
+            color: white;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        #blue {
+            background-color: #4b7bec;
+            color: white;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        #random {
+            background: linear-gradient(90deg, red, green, blue);
+            color: white;
+            border-radius: 20px;
+            font-size: medium;
+            outline: none;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 10rem;
+            height: 1rem;
+            background: #CCC;
+            outline: none;
+            opacity: 0.7;
+            overflow: hidden;
+            border-radius: 50px;
+            transition: .2s;
+        }
+
+        input[type="range"]:hover {
+            opacity: 1;
+            border-radius: 0px;
+        }
+
+        #rangeRed::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 1rem;
+            height: 1rem;
+            cursor: pointer;
+            background: #434343;
+            box-shadow: -110px 0 0 100px #f53b57;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        #rangeRed:hover::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            border-radius: 0;
+            box-shadow: -110px 0 0 100px #ff3f34;
+        }
+
+        #rangeGreen::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 1rem;
+            height: 1rem;
+            cursor: pointer;
+            background: #434343;
+            box-shadow: -110px 0 0 100px #05c46b;
+            border-radius: 50px;
+            transition: .2s;
+        }
+
+        #rangeGreen:hover::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            border-radius: 0;
+            box-shadow: -110px 0 0 100px #05c46b;
+        }
+
+        #rangeBlue::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 1rem;
+            height: 1rem;
+            cursor: pointer;
+            background: #434343;
+            box-shadow: -110px 0 0 100px #54a0ff;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        #rangeBlue:hover::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            border-radius: 0;
+            box-shadow: -110px 0 0 100px #2e86de;
+        }
+
+        #numberRed:focus,
+        #numberGreen:focus,
+        #numberBlue:focus {
+            border-style: none;
+            outline-style: ridge;
+            outline-width: medium;
+        }
+
+        #numberRed:focus {
+            outline-color: #f53b57;
+        }
+
+        #numberGreen:focus {
+            outline-color: #05c46b;
+        }
+
+        #numberBlue:focus {
+            outline-color: #2e86de;
+        }
+
+        .plusandminus {
+            background-color: #FFC312;
+            border-radius: 10px;
+            outline: none;
         }
     </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/65952ca494.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div style="margin:auto">
         <div id="targetarea"
-            style="width: 50vw; height: 50vh;display:flex;justify-content:center;align-items: center;margin:auto">
+            style="width: 50vw; height: 50vh;display:flex;justify-content:center;align-items: center;margin:auto; margin-bottom: 15px;">
             <span id="colornumber" style="color:black"></span>
         </div>
-        <hr>
         <div style="width:fit-content;margin:auto">
-            <input type="button" style="padding:10px 20px" value="隨機出色" onclick="makeitrandom()"><br>
-            <input type="button" style="padding:5px 15px;" id="red" value="R" onclick="red()">
-            <input id="rangeRed" type="range" min="0" max="255"><br>
-            <input type="button" style="padding:5px 15px;" id="green" value="G" onclick="green()">
-            <input id="rangeGreen" type="range" min="0" max="255"><br>
-            <input type="button" style="padding:5px 15px;" id="blue" value="B" onclick="blue()">
-            <input id="rangeBlue" type="range" min="0" max="255"><br>
-            <input type="button" value="+" style="padding:5px 15px;" onmousedown="timer=setInterval(alladd, 10);"
-                onmouseup="clearInterval(timer)" onmouseout="clearInterval(timer)">
-            <input type="button" value="-" style="padding:5px 15px;" onmousedown="timer=setInterval(allminus, 10);"
-                onmouseup="clearInterval(timer)" onmouseout="clearInterval(timer)">
-            <input type="button" value="?" style="padding:5px 15px;" onmousedown="timer=setInterval(makeitrandom, 10);"
-                onmouseup="clearInterval(timer)" onmouseout="clearInterval(timer)"><br>
+            <input type="button" id="random" style="padding:10px 20px" value="隨機出色" onclick="makeitrandom()"
+                class="my-3"><br>
+            <input type="button" style="padding:5px 15px;" id="red" value="R" onclick="red()" class="my-1">
+            <input id="rangeRed" type="range" min="0" max="255" class="my-1">
+            <input type="text" id="numberRed" onchange="numberRed()" value="" class="my-1"><br>
+            <input type="button" style="padding:5px 15px;" id="green" value="G" onclick="green()" class="my-1">
+            <input id="rangeGreen" type="range" min="0" max="255" class="my-1">
+            <input type="text" id="numberGreen" onchange="numberGreen()" value="" class="my-1"><br>
+            <input type="button" style="padding:5px 15px;" id="blue" value="B" onclick="blue()" class="my-1">
+            <input id="rangeBlue" type="range" min="0" max="255" class="my-1">
+            <input type="text" id="numberBlue" onchange="numberBlue()" value="" class="my-1"><br>
+            <input type="button" value="+" class="my-1 plusandminus" style="padding:5px 15px;"
+                onmousedown="timer=setInterval(alladd, 10);" onmouseup="clearInterval(timer)"
+                onmouseout="clearInterval(timer)">
+            <input type="button" value="-" class="my-1 plusandminus" style="padding:5px 15px;"
+                onmousedown="timer=setInterval(allminus, 10);" onmouseup="clearInterval(timer)"
+                onmouseout="clearInterval(timer)">
+            <input type="button" value="?" class="my-1 plusandminus" style="padding:5px 15px;"
+                onmousedown="timer=setInterval(makeitrandom, 10);" onmouseup="clearInterval(timer)"
+                onmouseout="clearInterval(timer)"><br>
             <div style="padding:10px 20px">
                 <input type="text" value="" id="thergb">
-                <button onclick="copyit()">複製</button>
+                <button onclick="copyit()">點我複製</button>
             </div>
         </div>
     </div>
@@ -50,6 +206,7 @@
     <script>
         // 先設定目標區域的ID抓取
         let thetarget = document.getElementById('targetarea');
+
 
         // 設定0~255隨機數字的生成
         function GetRandom(min, max) {
@@ -73,10 +230,14 @@
         rangeGreen.value = RandomGreen
         rangeBlue.value = RandomBlue;
 
+
         // 主要區域的顯示顏色
         thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
         document.getElementById("colornumber").textContent = `#${hexRed}${hexGreen}${hexBlue}`;
         document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+        document.getElementById("numberRed").value = `${RandomRed}`;
+        document.getElementById("numberGreen").value = `${RandomGreen}`;
+        document.getElementById("numberBlue").value = `${RandomBlue}`;
 
         function makeitrandom() {
             RandomRed = GetRandom(0, 255);
@@ -95,6 +256,10 @@
             rangeRed.value = RandomRed;
             rangeGreen.value = RandomGreen
             rangeBlue.value = RandomBlue;
+            document.getElementById("numberRed").value = `${RandomRed}`;
+            document.getElementById("numberGreen").value = `${RandomGreen}`;
+            document.getElementById("numberBlue").value = `${RandomBlue}`;
+
         }
 
 
@@ -110,6 +275,7 @@
                 document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
                 rangeRed.value = RandomRed;
                 document.querySelector("#thergb").value = `#${hexRed}${hexGreen}${hexBlue}`;
+                document.getElementById("numberRed").value = `${RandomRed}`;
             }
         }
 
@@ -125,6 +291,8 @@
                 document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
                 rangeGreen.value = RandomGreen
                 document.querySelector("#thergb").value = `#${hexRed}${hexGreen}${hexBlue}`;
+                document.getElementById("numberGreen").value = `${RandomGreen}`;
+
             }
         }
 
@@ -140,6 +308,7 @@
                 document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
                 rangeBlue.value = RandomBlue;
                 document.querySelector("#thergb").value = `#${hexRed}${hexGreen}${hexBlue}`;
+                document.getElementById("numberBlue").value = `${RandomBlue}`;
             }
         }
         function colorchange() {
@@ -156,6 +325,9 @@
             document.getElementById("colornumber").textContent = `#${hexRed}${hexGreen}${hexBlue}`;
             document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
             document.querySelector("#thergb").value = `#${hexRed}${hexGreen}${hexBlue}`;
+            document.getElementById("numberRed").value = `${RandomRed}`;
+            document.getElementById("numberGreen").value = `${RandomGreen}`;
+            document.getElementById("numberBlue").value = `${RandomBlue}`;
         }
         document.getElementById('rangeRed').addEventListener('input', colorchange);
         document.getElementById('rangeGreen').addEventListener('input', colorchange);
@@ -191,6 +363,9 @@
             rangeRed.value = RandomRed
             rangeGreen.value = RandomGreen
             rangeBlue.value = RandomBlue
+            document.getElementById("numberRed").value = `${RandomRed}`;
+            document.getElementById("numberGreen").value = `${RandomGreen}`;
+            document.getElementById("numberBlue").value = `${RandomBlue}`;
         }
 
         function allminus() {
@@ -222,12 +397,73 @@
             rangeRed.value = RandomRed
             rangeGreen.value = RandomGreen
             rangeBlue.value = RandomBlue
+            document.getElementById("numberRed").value = `${RandomRed}`;
+            document.getElementById("numberGreen").value = `${RandomGreen}`;
+            document.getElementById("numberBlue").value = `${RandomBlue}`;
         }
         document.querySelector("#thergb").value = `#${hexRed}${hexGreen}${hexBlue}`;
         function copyit() {
             var copytarget = document.getElementById("thergb");
             copytarget.select();
             document.execCommand("copy");
+        }
+
+        function numberRed() {
+            RandomRed = document.getElementById("numberRed").value;
+            parsedRed = parseInt(RandomRed, 10);
+            parsedGreen = parseInt(RandomGreen, 10);
+            parsedBlue = parseInt(RandomBlue, 10);
+            hexRed = parsedRed.toString(16).toUpperCase();
+            hexGreen = parsedGreen.toString(16).toUpperCase();
+            hexBlue = parsedBlue.toString(16).toUpperCase();
+            thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `#${hexRed}${hexGreen}${hexBlue}`;
+            document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+            document.querySelector("#thergb").value = `#${hexRed}${hexGreen}${hexBlue}`;
+            document.getElementById("numberRed").value = `${RandomRed}`;
+            document.getElementById("numberGreen").value = `${RandomGreen}`;
+            document.getElementById("numberBlue").value = `${RandomBlue}`;
+            rangeRed.value = RandomRed
+            rangeGreen.value = RandomGreen
+            rangeBlue.value = RandomBlue
+        }
+        function numberGreen() {
+            RandomGreen = document.getElementById("numberGreen").value;
+            parsedRed = parseInt(RandomRed, 10);
+            parsedGreen = parseInt(RandomGreen, 10);
+            parsedBlue = parseInt(RandomBlue, 10);
+            hexRed = parsedRed.toString(16).toUpperCase();
+            hexGreen = parsedGreen.toString(16).toUpperCase();
+            hexBlue = parsedBlue.toString(16).toUpperCase();
+            thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `#${hexRed}${hexGreen}${hexBlue}`;
+            document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+            document.querySelector("#thergb").value = `#${hexRed}${hexGreen}${hexBlue}`;
+            document.getElementById("numberRed").value = `${RandomRed}`;
+            document.getElementById("numberGreen").value = `${RandomGreen}`;
+            document.getElementById("numberBlue").value = `${RandomBlue}`;
+            rangeRed.value = RandomRed
+            rangeGreen.value = RandomGreen
+            rangeBlue.value = RandomBlue
+        }
+        function numberBlue() {
+            RandomBlue = document.getElementById("numberBlue").value;
+            parsedRed = parseInt(RandomRed, 10);
+            parsedGreen = parseInt(RandomGreen, 10);
+            parsedBlue = parseInt(RandomBlue, 10);
+            hexRed = parsedRed.toString(16).toUpperCase();
+            hexGreen = parsedGreen.toString(16).toUpperCase();
+            hexBlue = parsedBlue.toString(16).toUpperCase();
+            thetarget.style.backgroundColor = `rgb(${RandomRed}, ${RandomGreen}, ${RandomBlue})`;
+            document.getElementById("colornumber").textContent = `#${hexRed}${hexGreen}${hexBlue}`;
+            document.getElementById("colornumber").setAttribute('style', `color:rgb(${antiRed}, ${antiGreen}, ${antiBlue})`)
+            document.querySelector("#thergb").value = `#${hexRed}${hexGreen}${hexBlue}`;
+            document.getElementById("numberRed").value = `${RandomRed}`;
+            document.getElementById("numberGreen").value = `${RandomGreen}`;
+            document.getElementById("numberBlue").value = `${RandomBlue}`;
+            rangeRed.value = RandomRed
+            rangeGreen.value = RandomGreen
+            rangeBlue.value = RandomBlue
         }
     </script>
 </body>
